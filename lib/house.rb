@@ -17,12 +17,25 @@ class House
     @price.gsub('$','').to_i > 500000
   end
 
-  def rooms_from_category
+  def rooms_from_category(x)
+    @rooms.select do |room|
+      if room.category == x
+      room
+      end
+    end
   end
 
   def area
-    #add all room areas
+    house_room_area_array.inject{ |sum,x| sum + x }
   end
+
+  def house_room_area_array
+    total_area = 0
+    @rooms.map do |room|
+      total_area + room.area
+    end
+  end
+
 
   def details
     #return a hash with {"price" => "address"}
