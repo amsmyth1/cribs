@@ -38,6 +38,9 @@ class House
 
 
   def details
-    #return a hash with {"price" => "address"}
+    details_hash = Hash.new
+    details_hash["price"] = @price
+    details_hash["address"] = address
+    details_hash
   end
 end
