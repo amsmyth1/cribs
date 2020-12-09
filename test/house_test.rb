@@ -31,4 +31,16 @@ class RoomTest < Minitest::Test
 
     assert_equal [room_1, room_2], house.rooms
   end
+
+  def test_above_market_average
+  end
+
+  def test_rooms_from_category
+  end
+
+  def test_house_area
+  end
+
+  def test_house_details
+  end 
 end
