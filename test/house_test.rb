@@ -20,15 +20,15 @@ class RoomTest < Minitest::Test
   end
 
   def test_add_room
-    room = Room.new(:bedroom, 10, '13')
+    room_1 = Room.new(:bedroom, 10, '13')
     house = House.new("$400000", "123 sugar lane")
-    house.add_room(room)
+    house.add_room(room_1)
 
-    assert_equal [room], house.rooms
+    assert_equal [room_1], house.rooms
 
     room_2 = Room.new(:bedroom, 11, '15')
     house.add_room(room_2)
 
-    assert_equal [room, room_2], house.rooms 
+    assert_equal [room_1, room_2], house.rooms
   end
 end
