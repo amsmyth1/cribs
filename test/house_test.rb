@@ -79,4 +79,18 @@ class RoomTest < Minitest::Test
     assert_equal expected, house.details
     {"$400000"=>"123 sugar lane"}
   end
+
+  def test_rooms_sorted_by_area
+    room_1 = Room.new(:bedroom, 10, '13') #130
+    room_2 = Room.new(:bedroom, 11, '15') #165
+    room_3 = Room.new(:living_room, 25, '15') #375
+    room_4 = Room.new(:basement, 30, '41') #1230
+    house = House.new("$400000", "123 sugar lane")
+    house.add_room(room_1)
+    house.add_room(room_2)
+    house.add_room(room_3)
+    house.add_room(room_4)
+
+    assert_equal [room_4, room_3, room_2, room_1], house.rooms_sorted_by_area
+  end
 end

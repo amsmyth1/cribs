@@ -43,4 +43,10 @@ class House
     details_hash["address"] = address
     details_hash
   end
+
+
+  def rooms_sorted_by_area
+    sorted = @rooms.sort_by { |room| room.area }
+    sorted.reverse
+  end
 end
