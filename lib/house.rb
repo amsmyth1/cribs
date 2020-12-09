@@ -49,4 +49,21 @@ class House
     sorted = @rooms.sort_by { |room| room.area }
     sorted.reverse
   end
+
+  def rooms_categories
+    house_categories =
+    @rooms.map do |room|
+      room.category
+    end
+    house_categories.uniq!
+  end
+
+  def rooms_by_category
+    bedroom_hash = Hash.new
+    rooms_categories.map do |category|
+      bedroom_hash[category] = rooms_from_category(category)
+
+    end
+    bedroom_hash
+  end
 end
