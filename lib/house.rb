@@ -12,9 +12,13 @@ class House
   def add_room(room)
     @rooms << room
   end
-
+  
+  def price
+    price = @price.gsub('$', '').to_i 
+  end 
+  
   def above_market_average?
-    @price.gsub('$','').to_i > 500000
+    price > 500000
   end
 
   def rooms_from_category(x)
@@ -43,9 +47,16 @@ class House
     details_hash["address"] = address
     details_hash
   end
+  
+  def details_alt
+    { 
+      "address" => @address
+      "price" => price
+      }
+  end
 
 
-  def rooms_sorted_by_area
+  def rooms_sorted_by_area #this was supposed to be by price/sqft
     sorted = @rooms.sort_by { |room| room.area }
     sorted.reverse
   end
@@ -66,4 +77,28 @@ class House
     end
     bedroom_hash
   end
+  
+  def price_per_squarefoot
+    (price / area.to_f).round[2]
+  end 
+  
+  def lecture_rooms_by_category
+    @rooms.group_by do |room|
+      room.category
+      
+      #OR
+      
+      hash = {}
+      
+      @rooms.each do |room|
+        if hash[room.category]
+          hash[room.category.push(room)
+        else
+           hash[room.category] = [room]
+        end
+       end 
+      hash
+    end 
+    end 
+  end 
 end
